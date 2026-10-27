@@ -1,0 +1,16 @@
+{
+  "name": "discovery-to-proposal-engine-plugin",
+  "displayName": "Discovery to Proposal Engine",
+  "version": "1.0.0",
+  "description": "Staged Multi-Agent Pipeline with Contextual Handoff (DAG) that ingests raw client discovery notes and generates a comprehensive technical-commercial pre-proposal dossier (DOSSIE_TECNICO_PRE_PROPOSTA.md).",
+  "author": {
+    "name": "Halcyon Tech",
+    "url": "https://github.com/HalcyonTech-LTDA"
+  },
+  "homepage": "https://github.com/HalcyonTech-LTDA/discovery-to-proposal-engine-plugin",
+  "repository": "https://github.com/HalcyonTech-LTDA/discovery-to-proposal-engine-plugin",
+  "license": "MIT",
+  "skills": [
+    "./skills/discovery-proposal-orchestrator"
+  ]
+}

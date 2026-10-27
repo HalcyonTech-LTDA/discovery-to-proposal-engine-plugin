@@ -1,0 +1,78 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/workflow.json",
+  "name": "discovery-to-proposal-pipeline",
+  "displayName": "Discovery-to-Proposal Pre-Sales Engineering DAG",
+  "description": "5-stage sequential pre-sales engineering DAG with contextual handoffs transforming raw discovery notes into DOSSIE_TECNICO_PRE_PROPOSTA.md",
+  "trigger": "manual",
+  "entrypoint": "stage0-pre-sales-orchestrator-agent",
+  "constraints": {
+    "prohibit_slides": true,
+    "prohibit_presentation_decks": true,
+    "mandate_anti_hallucination_register": true,
+    "mandate_75_to_80_utilization": true,
+    "mandate_5_day_tacit_acceptance": true,
+    "output_file": "DOSSIE_TECNICO_PRE_PROPOSTA.md"
+  },
+  "stages": [
+    {
+      "id": "stage1_problem_scope_alignment",
+      "name": "Stage 1: Problem & Scope Alignment Analyst",
+      "agent": "stage1-problem-scope-alignment-agent",
+      "skill": "stage1-problem-scope-alignment",
+      "inputs": ["raw_discovery_notes"],
+      "outputs": ["handoff_1_scope_baseline"],
+      "artifacts": ["ScopeBaseline.md"]
+    },
+    {
+      "id": "stage2_tech_architecture_risk",
+      "name": "Stage 2: Principal Solutions Architect & Risk Auditor",
+      "agent": "stage2-solutions-architect-risk-agent",
+      "skill": "stage2-tech-architecture-risk",
+      "inputs": ["handoff_1_scope_baseline"],
+      "outputs": ["handoff_2_tech_foundation_and_risks"],
+      "artifacts": ["TechFoundationAndRisks.md"]
+    },
+    {
+      "id": "stage3_engineering_estimator",
+      "name": "Stage 3: Engineering Estimator (Analogy & T-Shirt)",
+      "agent": "stage3-engineering-estimator-agent",
+      "skill": "stage3-macro-engineering-estimator",
+      "inputs": ["handoff_1_scope_baseline", "handoff_2_tech_foundation_and_risks"],
+      "outputs": ["handoff_3_effort_model"],
+      "artifacts": ["EffortModel.md"]
+    },
+    {
+      "id": "stage4_agile_delivery_staffing",
+      "name": "Stage 4: Agile Delivery & Staffing Specialist",
+      "agent": "stage4-agile-delivery-staffing-agent",
+      "skill": "stage4-squad-allocation-milestones",
+      "inputs": ["handoff_1_scope_baseline", "handoff_2_tech_foundation_and_risks", "handoff_3_effort_model"],
+      "outputs": ["handoff_4_delivery_plan"],
+      "artifacts": ["DeliveryPlan.md"]
+    },
+    {
+      "id": "stage5_commercial_governance_risk",
+      "name": "Stage 5: Commercial Governance & Risk Mitigator",
+      "agent": "stage5-commercial-governance-risk-agent",
+      "skill": "stage5-commercial-governance-risk",
+      "inputs": ["handoff_1_scope_baseline", "handoff_2_tech_foundation_and_risks", "handoff_3_effort_model", "handoff_4_delivery_plan"],
+      "outputs": ["handoff_5_commercial_strategy"],
+      "artifacts": ["CommercialStrategy.md"]
+    },
+    {
+      "id": "stage6_synthesis_and_audit",
+      "name": "Lead Pre-Sales Orchestrator Synthesizer",
+      "agent": "stage0-pre-sales-orchestrator-agent",
+      "skill": "discovery-proposal-orchestrator",
+      "inputs": [
+        "handoff_1_scope_baseline",
+        "handoff_2_tech_foundation_and_risks",
+        "handoff_3_effort_model",
+        "handoff_4_delivery_plan",
+        "handoff_5_commercial_strategy"
+      ],
+      "outputs": ["DOSSIE_TECNICO_PRE_PROPOSTA.md"],
+      "validation_script": "skills/discovery-proposal-orchestrator/scripts/validate_dossier.py"
+    }
+  ]
+}

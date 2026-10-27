@@ -1,0 +1,18 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "discovery-to-proposal-engine-plugin",
+  "displayName": "Discovery-to-Proposal Pre-Sales Engineering Engine",
+  "version": "1.0.0",
+  "description": "Enterprise-grade staged multi-agent pipeline with contextual handoff (DAG) that ingests raw client discovery notes, meeting transcripts, and project briefings to engineer an exhaustive, dense, analytical technical-commercial pre-proposal dossier (DOSSIE_TECNICO_PRE_PROPOSTA.md). Strictly prohibits slide decks or superficial summaries, orchestrating Stage 1 Problem & Scope Alignment, Stage 2 Solutions Architecture & Technical Risk Audit, Stage 3 Engineering Estimation (T-Shirt & Analogy), Stage 4 Agile Staffing & Milestone Scheduling, Stage 5 Commercial Governance & Contractual Risk Mitigation, led by the Lead Pre-Sales Orchestrator.",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "Run the discovery-to-proposal pipeline on these client meeting notes to generate DOSSIE_TECNICO_PRE_PROPOSTA.md",
+    "Ingest this discovery transcript and execute the 5-stage pre-sales engineering DAG with contextual handoff",
+    "Analyze the problem statement, business metrics, and enforce strict in-scope vs out-of-scope boundaries for this discovery briefing",
+    "Audit technical architecture, integrations, legacy ERP dependencies, and evaluate Phase 0 Inception requirements for this project",
+    "Decompose the discovery requirements into 5-8 macro-epics and apply analogy T-shirt sizing with explicit uncertainty buffers",
+    "Design the optimal engineering squad topology with 75-80% utilization and map out delivery milestones",
+    "Structure the commercial governance framework, change request protocol, client acceptance SLAs, and tacit approval terms",
+    "Validate this pre-proposal technical dossier against all 8 mandatory sections, anti-slide rules, and engineering standards"
+  ]
+}

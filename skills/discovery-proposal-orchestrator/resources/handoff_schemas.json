@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DiscoveryToProposalHandoffSchemas",
+  "description": "Validation schemas for intermediate DAG handoff artifacts in the Discovery-to-Proposal pipeline",
+  "definitions": {
+    "Handoff1_ScopeBaseline": {
+      "type": "object",
+      "required": ["client_context", "core_pains", "business_objectives", "delimitation_matrix", "business_assumptions"],
+      "properties": {
+        "client_context": { "type": "string" },
+        "core_pains": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+        "business_objectives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "target_metric", "baseline", "target", "measurement_method"],
+            "properties": {
+              "id": { "type": "string" },
+              "target_metric": { "type": "string" },
+              "baseline": { "type": "string" },
+              "target": { "type": "string" },
+              "measurement_method": { "type": "string" }
+            }
+          }
+        },
+        "delimitation_matrix": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["domain", "in_scope", "explicit_out_of_scope", "rationale"],
+            "properties": {
+              "domain": { "type": "string" },
+              "in_scope": { "type": "string" },
+              "explicit_out_of_scope": { "type": "string" },
+              "rationale": { "type": "string" }
+            }
+          }
+        },
+        "business_assumptions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "Handoff2_TechFoundationAndRisks": {
+      "type": "object",
+      "required": ["macro_topology", "tech_stack", "integrations", "technical_red_flags", "phase_0_verdict"],
+      "properties": {
+        "macro_topology": { "type": "string" },
+        "tech_stack": { "type": "object" },
+        "integrations": { "type": "array", "items": { "type": "object" } },
+        "technical_red_flags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["risk_id", "description", "severity", "mitigation_strategy"]
+          }
+        },
+        "phase_0_verdict": {
+          "type": "object",
+          "required": ["verdict", "justification", "duration_weeks", "scope_spikes"],
+          "properties": {
+            "verdict": { "type": "string", "enum": ["REQUIRED", "NOT REQUIRED", "OPTIONAL RECOMMENDED"] },
+            "justification": { "type": "string" },
+            "duration_weeks": { "type": "integer" },
+            "scope_spikes": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "Handoff3_EffortModel": {
+      "type": "object",
+      "required": ["macro_epics", "pert_estimates", "total_buffered_dev_sprints", "critical_path"],
+      "properties": {
+        "macro_epics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["epic_id", "name", "tshirt_size", "complexity_rationale"]
+          },
+          "minItems": 5,
+          "maxItems": 8
+        },
+        "pert_estimates": { "type": "array", "items": { "type": "object" } },
+        "total_buffered_dev_sprints": { "type": "number" },
+        "critical_path": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "Handoff4_DeliveryPlan": {
+      "type": "object",
+      "required": ["squad_topology", "utilization_factor", "calendar_weeks", "milestones"],
+      "properties": {
+        "squad_topology": { "type": "array", "items": { "type": "object" } },
+        "utilization_factor": { "type": "number", "minimum": 0.70, "maximum": 0.85 },
+        "calendar_weeks": { "type": "number" },
+        "milestones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["milestone_id", "name", "timeline", "deliverables", "exit_criteria"]
+          }
+        }
+      }
+    },
+    "Handoff5_CommercialStrategy": {
+      "type": "object",
+      "required": ["recommended_model", "change_request_protocol", "uat_sla_and_tacit_terms", "pricing_memory"],
+      "properties": {
+        "recommended_model": { "type": "string" },
+        "change_request_protocol": { "type": "object" },
+        "uat_sla_and_tacit_terms": {
+          "type": "object",
+          "required": ["homologation_days", "tacit_acceptance_clause"]
+        },
+        "pricing_memory": { "type": "object" }
+      }
+    }
+  }
+}
